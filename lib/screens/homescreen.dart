@@ -43,6 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
     getNews();
   }
 
+  Future<void> _getData() async {
+    setState(() {
+      getNews();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,9 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
-          await getNews();
-        },
+        onRefresh: _getData,
         child: _loading
             ? Center(
                 child: CircularProgressIndicator(),
